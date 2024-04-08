@@ -60,22 +60,38 @@ class TestCellCountsStandard(unittest.TestCase):
             pp(grid, ng)
 
 class TestCellCountsCustom(unittest.TestCase):
-    def test_count_oddShapes(self):
-        Height, Width, NeighborhoodSize = 1, 21, 1
-        grid = GenerateGrid(Height, Width, FixedPositiveValues=[(0,5), (0,0)])
-        self.assertEqual(GetNeighborCounts(grid, Height, Width, NeighborhoodSize),5)
-        if debug:
-            ng = generateNeighbors(grid, Height, Width, NeighborhoodSize)
-            pp(grid, ng)
+    def test_count_oddShapes_n0(self):
+        OddShapes = [(1,21), (1,1), (10,1), (2,2)]
+        for Height, Width in OddShapes:
+            NeighborhoodSize = 0
+            grid = GenerateGrid(Height, Width, FixedPositiveValues=[(0,0)])
+            self.assertEqual(GetNeighborCounts(grid, Height, Width, NeighborhoodSize),1)
+            if debug:
+                ng = generateNeighbors(grid, Height, Width, NeighborhoodSize)
+                pp(grid, ng)
     
-    def test_count_oddShapes(self):
-        Height, Width, NeighborhoodSize = 1, 1, 2
-        grid = GenerateGrid(Height, Width, FixedPositiveValues=[(0,0)])
-        self.assertEqual(GetNeighborCounts(grid, Height, Width, NeighborhoodSize),1)
-        if debug:
-            ng = generateNeighbors(grid, Height, Width, NeighborhoodSize)
-            pp(grid, ng)
+    def test_count_oddShapes_n1(self):
+        OddShapes = [(1,21), (10,1), (2,2)]
+        for Height, Width in OddShapes:
+            NeighborhoodSize = 2
+            grid = GenerateGrid(Height, Width, FixedPositiveValues=[(0,0)])
+            self.assertEqual(GetNeighborCounts(grid, Height, Width, NeighborhoodSize),3)
+            if debug:
+                ng = generateNeighbors(grid, Height, Width, NeighborhoodSize)
+                pp(grid, ng)
+    
+    def test_count_oddShapes_n2(self):
+        OddShapes = [(2,2)]
+        for Height, Width in OddShapes:
+            NeighborhoodSize = 2
+            grid = GenerateGrid(Height, Width, FixedPositiveValues=[(0,0)])
+            self.assertEqual(GetNeighborCounts(grid, Height, Width, NeighborhoodSize),4)
+            if debug:
+                ng = generateNeighbors(grid, Height, Width, NeighborhoodSize)
+                pp(grid, ng)
+    
+    
 
 if __name__ == '__main__':
-    debug = False
+    debug = True
     unittest.main()
