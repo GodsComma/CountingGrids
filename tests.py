@@ -77,5 +77,5 @@ class TestCellCountsCustom(unittest.TestCase):
             pp(grid, ng)
 
 if __name__ == '__main__':
-    debug = True
+    debug = False
     unittest.main()
