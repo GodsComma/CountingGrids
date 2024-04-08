@@ -89,9 +89,17 @@ class TestCellCountsCustom(unittest.TestCase):
             if debug:
                 ng = generateNeighbors(grid, Height, Width, NeighborhoodSize)
                 pp(grid, ng)
+
+    def test_count_multi_edge_runoff(self):
+        Height, Width, NeighborhoodSize = 11, 11, 3
+        grid = GenerateGrid(Height, Width, FixedPositiveValues=[(0,10), (3,10)])
+        self.assertEqual(GetNeighborCounts(grid, Height, Width, NeighborhoodSize),20)
+        if debug:
+            ng = generateNeighbors(grid, Height, Width, NeighborhoodSize)
+            pp(grid, ng)
     
     
 
 if __name__ == '__main__':
-    debug = True
+    debug = False
     unittest.main()

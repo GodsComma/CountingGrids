@@ -14,7 +14,7 @@ def pp(grid: list[list[int]], ngs: list[tuple[int,int]]=[]):
             x,y = co
             if type(grid[x][y]) is int and grid[x][y] > 0:
                 grid[x][y] = f'\033[{colors[random.randint(0,2)% len(colors)]}m  +  \033[0m'
-            else:
+            elif type(grid[x][y]) is not str:
                 grid[x][y] = f'\033[{41}m  *  \033[0m'
     
     for i in range(len(grid[0])):
